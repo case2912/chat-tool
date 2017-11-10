@@ -1,6 +1,7 @@
 import { Action, combineReducers, createStore } from "redux";
-import reducer, { AppActions, AppState } from "./module";
-
+import { AppActions } from "./Action";
+import AppState from "./AppState";
+import reducer from "./Reducer";
 export default createStore(
     combineReducers({
         reducer,

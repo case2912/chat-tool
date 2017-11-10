@@ -1,23 +1,17 @@
 import * as React from "react";
-import { ActionDispatcher } from "./Container";
-import { AppState, IMessage } from "./module";
-import { generateTimestamp, generateUuid } from "./util";
-
-export interface Props {
-    value: AppState;
-    actions: ActionDispatcher;
-}
-
-export class ChatBox extends React.Component<Props, {}> {
-
+import AppState from "./../AppState";
+import { ActionDispatcher } from "./../Container";
+import IMessage from "./../IMessage";
+import { generateTimestamp, generateUuid } from "./../Util";
+export default class ChatBox extends React.Component<any, any> {
     public render() {
         return (
             <div>
-                <ul>
-                    {this.props.value.messages.map((data) => {
-                        return <li key={data.uuid}>{data.userid}:&nbsp;{data.timestamp}:&nbsp;{data.message}</li>;
-                    })}
-                </ul>
+                {
+                    this.props.item.map((v: IMessage) => {
+                        return <p key={v.uuid}>{v.timestamp}:{v.message}</p>;
+                    })
+                }
                 <input type="text" onKeyDown={e => this._onKeyDown(e)}></input>
             </div >
         );
@@ -30,7 +24,7 @@ export class ChatBox extends React.Component<Props, {}> {
                 timestamp: generateTimestamp(),
                 uuid: generateUuid(),
                 userid: this.props.value.userid,
-                roomid: this.props.value.roomid,
+                roomid: this.props.roomid,
             };
             this.props.actions.addText(message);
             target.value = "";

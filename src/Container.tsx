@@ -1,17 +1,24 @@
 import { connect } from "react-redux";
 import { Dispatch } from "redux";
-import { App } from "./App";
-import { addTextAmount, IMessage, recieveTextAmount } from "./module";
+import * as Action from "./Action";
+import App from "./Components/App";
+import IMessage from "./IMessage";
 import { ReduxAction, ReduxState } from "./store";
 
 export class ActionDispatcher {
     constructor(private dispatch: (action: ReduxAction) => void) { }
 
-    public addText(amount: IMessage) {
-        this.dispatch(addTextAmount(amount));
+    public addText(message: IMessage) {
+        this.dispatch(Action.addText(message));
     }
-    public recieveText(amount: IMessage) {
-        this.dispatch(recieveTextAmount(amount));
+    public recieveText(message: IMessage) {
+        this.dispatch(Action.recieveText(message));
+    }
+    public createRoom(value: string) {
+        this.dispatch(Action.createRoom(value));
+    }
+    public joinRoom(value: string) {
+        this.dispatch(Action.joinRoom(value));
     }
 }
 
