@@ -10,7 +10,10 @@
         "experimentalDecorators": true,
         "target": "es6",
         "sourceMap": true,
-        "outDir": "./dist"
+        "outDir": "./dist",
+        "plugins": [{
+            "name": "typescript-styled-plugin"
+        }]
     },
     "exclude": [
         "node_modules",

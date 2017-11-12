@@ -1,17 +1,35 @@
 import * as React from "react";
+import styled from "styled-components";
 import AppState from "./../AppState";
 import { ActionDispatcher } from "./../Container";
 import IMessage from "./../IMessage";
 import { generateTimestamp, generateUuid } from "./../Util";
+const Box = styled.div`
+    overflow:auto;
+    max-height:300px;
+`;
+const Text = styled.p`
+`;
+const Timestamp = styled.p`
+    font-size:9px;
+    color:gray;
+`;
 export default class ChatBox extends React.Component<any, any> {
     public render() {
         return (
             <div>
-                {
-                    this.props.item.map((v: IMessage) => {
-                        return <p key={v.uuid}>{v.timestamp}:{v.message}</p>;
-                    })
-                }
+                <Box>
+                    {
+                        this.props.item.map((v: IMessage) => {
+                            return (
+                                <div key={v.uuid}>
+                                    <Timestamp >{v.timestamp}</Timestamp>
+                                    <Text >{v.message}</Text>
+                                </div>
+                            );
+                        })
+                    }
+                </Box>
                 <input type="text" onKeyDown={e => this._onKeyDown(e)}></input>
             </div >
         );
